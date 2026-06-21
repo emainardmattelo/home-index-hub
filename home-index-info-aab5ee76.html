@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leyu 知识库 · 内容索引与说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f0f2f6;
+            color: #1e1e2a;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .page-wrapper {
+            max-width: 1120px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* 深色头图区 (hero) */
+        .hero {
+            background: #181c2b;
+            color: #eef0f5;
+            padding: 56px 24px 48px;
+            border-radius: 0 0 32px 32px;
+            margin: 0 -24px 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            border-left: 5px solid #7b9cf8;
+            padding-left: 18px;
+        }
+        .hero .subhead {
+            font-size: 1.08rem;
+            opacity: 0.85;
+            max-width: 680px;
+            margin-top: 10px;
+        }
+        .hero .badge-set {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .badge-set span {
+            background: #2e334b;
+            padding: 4px 14px;
+            border-radius: 30px;
+            color: #ccd6fc;
+        }
+
+        /* 主内容卡片布局 —— 目录感 */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 28px;
+            margin: 24px 0;
+        }
+        @media (max-width: 700px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 28px 28px 32px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s;
+        }
+        .section-card:hover {
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+        }
+
+        .section-card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #1d2336;
+        }
+        .section-card h2 small {
+            font-weight: 400;
+            font-size: 0.85rem;
+            background: #eef2fa;
+            padding: 2px 12px;
+            border-radius: 30px;
+            color: #3a4a6b;
+        }
+        .section-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .section-card li {
+            padding: 10px 0 10px 24px;
+            position: relative;
+            border-bottom: 1px solid #f0f2f8;
+        }
+        .section-card li:last-child {
+            border-bottom: none;
+        }
+        .section-card li::before {
+            content: "▹";
+            position: absolute;
+            left: 2px;
+            color: #5b7bf7;
+            font-weight: 600;
+        }
+        .topic-tag {
+            display: inline-block;
+            background: #e8edfc;
+            color: #1c2a5e;
+            padding: 0 12px;
+            border-radius: 14px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        /* 提示区 / FAQ 摘要 */
+        .info-panel {
+            background: #f8faff;
+            border-left: 4px solid #7b9cf8;
+            border-radius: 18px;
+            padding: 22px 24px;
+            margin: 20px 0 16px;
+        }
+        .info-panel p {
+            margin-bottom: 10px;
+        }
+        .info-panel p:last-child {
+            margin-bottom: 0;
+        }
+        .faq-item {
+            margin-top: 20px;
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 18px 22px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .faq-item strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #1a1f31;
+        }
+
+        /* 相关信息区 (旁侧栏) */
+        .sidebar-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 24px 22px 28px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+            margin-bottom: 28px;
+        }
+        .sidebar-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            border-bottom: 2px solid #e6ebf6;
+            padding-bottom: 10px;
+        }
+        .sidebar-card p {
+            font-size: 0.96rem;
+            margin: 12px 0;
+        }
+        .link-highlight {
+            color: #2f54d9;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #7b9cf8;
+        }
+        .link-highlight:hover {
+            color: #172a7a;
+            border-bottom-style: solid;
+        }
+
+        .related-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .related-chip {
+            background: #edf1fb;
+            color: #1a264e;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dfe5f0;
+            margin: 28px 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 32px 0 48px;
+            font-size: 0.9rem;
+            color: #5b6180;
+            border-top: 1px solid #dde2ee;
+            margin-top: 16px;
+        }
+        .footer-note a {
+            color: #2f54d9;
+            text-decoration: none;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.7rem;
+                padding-left: 14px;
+            }
+            .section-card {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>📖 主题知识库 · leyu</h1>
+        <div class="subhead">围绕核心关键词整理的内容索引、说明与常见方向。本页作为结构化入口，方便快速了解相关主题脉络。</div>
+        <div class="badge-set">
+            <span>📂 目录式布局</span>
+            <span>⚡ 说明区</span>
+            <span>💡 提示区</span>
+            <span>🔗 相关信息</span>
+        </div>
+    </header>
+
+    <!-- 主要内容网格 -->
+    <div class="content-grid">
+
+        <!-- 左栏：介绍 + 特点 + 场景 + 提示区 -->
+        <div>
+            <div class="section-card">
+                <h2>📌 主题介绍 <small>背景</small></h2>
+                <p>本索引围绕 <strong>leyu</strong> 所关联的内容方向展开，整理出结构化的知识节点。不同于传统的单页介绍，这里更像一个微型知识库——通过分类、短说明和相关链接，帮助你快速建立对关键词背后信息框架的认识。所有条目均保持客观描述，不包含主观引导或承诺。</p>
+                <p>内容组织参考了常见的信息架构模式：先给出概述，再按模块列出要点，最后补充提示与常见疑问摘要。</p>
+            </div>
+
+            <div class="section-card" style="margin-top: 20px;">
+                <h2>🧩 内容特点</h2>
+                <ul>
+                    <li><strong>模块化条目</strong> — 每个主题以独立单元呈现，便于跳读与回顾。</li>
+                    <li><strong>标签关联</strong> — 每条内容附带分类标签（如【说明】【场景】），提升可读性。</li>
+                    <li><strong>克制表述</strong> — 避免夸张词汇，只陈述事实性信息与可验证的方向。</li>
+                    <li><strong>渐进说明</strong> — 从概括到细节，层层递进，符合阅读习惯。</li>
+                </ul>
+            </div>
+
+            <div class="section-card" style="margin-top: 20px;">
+                <h2>📂 常见方向 / 场景</h2>
+                <ul>
+                    <li><span class="topic-tag">场景</span> 信息检索与知识梳理：在整理关键词 <a href="https://home-index-leyu.com" class="link-highlight">leyu</a> 相关内容时，将分散的点整合为结构图。</li>
+                    <li><span class="topic-tag">场景</span> 内容索引参考：适合需要快速浏览主题下有哪些细分模块的用户。</li>
+                    <li><span class="topic-tag">说明</span> 作为文档的一部分，帮助新读者理解上下文关系。</li>
+                    <li><span class="topic-tag">说明</span> 关键词延伸阅读：从单一词汇扩展到相关概念集群。</li>
+                </ul>
+            </div>
+
+            <!-- 提示区 (faq摘要风格) -->
+            <div class="info-panel">
+                <p><strong>💡 提示</strong> 本页内容基于公开知识整理，不构成专业建议。索引中的条目仅用于说明信息组织方式，具体细节请以原始来源为准。</p>
+                <p>若需进一步了解完整内容，可参考相关文档或官方资料。链接文本中出现的 <a href="https://home-index-leyu.com" class="link-highlight">leyu</a> 作为关键词示例。</p>
+            </div>
+
+            <!-- FAQ 摘要（两个典型问题） -->
+            <div class="faq-item">
+                <strong>❓ 这个页面的定位是什么？</strong>
+                <p>作为描述关键词 <a href="https://home-index-leyu.com" class="link-highlight">leyu</a> 的说明索引页，不提供下载、注册或交易功能，仅用于信息展示与导航。</p>
+            </div>
+            <div class="faq-item">
+                <strong>❓ 内容会频繁更新吗？</strong>
+                <p>本索引为静态版，内容基于当前可参考的资料。如有结构性调整，会在后续版本中反映。</p>
+            </div>
+        </div>
+
+        <!-- 右侧栏：相关信息区 -->
+        <aside>
+            <div class="sidebar-card">
+                <h3>🔎 相关信息</h3>
+                <p>本主题词 <strong>leyu</strong> 在索引中作为核心节点。以下列出与之关联的部分分类标签与链接示例：</p>
+                <div class="related-row">
+                    <span class="related-chip">知识梳理</span>
+                    <span class="related-chip">说明页</span>
+                    <span class="related-chip">目录索引</span>
+                    <span class="related-chip">信息框架</span>
+                    <span class="related-chip">结构展示</span>
+                </div>
+                <p style="margin-top: 16px;">相关资源参考：<br>
+                • 主题文档 · 内容概览<br>
+                • 标签体系说明<br>
+                • 常见索引格式</p>
+                <p style="margin-top: 6px;">更多背景可查看 <a href="https://home-index-leyu.com" class="link-highlight">leyu</a> 相关介绍。</p>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>📋 结构速览</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 5px 0;">• 头图 / 标题区</li>
+                    <li style="padding: 5px 0;">• 主题介绍</li>
+                    <li style="padding: 5px 0;">• 内容特点</li>
+                    <li style="padding: 5px 0;">• 场景与说明</li>
+                    <li style="padding: 5px 0;">• 提示与 FAQ</li>
+                    <li style="padding: 5px 0;">• 相关信息栏</li>
+                </ul>
+                <p style="margin-top: 12px; font-size:0.9rem; color:#3f4a6b;">本页字数约900，以平实语气组织。</p>
+            </div>
+
+            <div class="sidebar-card" style="background:#f6f9ff;">
+                <h3>📎 额外说明</h3>
+                <p>本页面采用深色头图 + 浅色正文区配色，强调色用于链接与装饰性元素。所有链接均使用 <code>#2f54d9</code> 色，并以下划线区分。</p>
+                <p>响应式设计：在窄屏设备上自动调整为单列布局。</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <p>主题知识索引 · 基于公开信息整理 | 链接文本 <a href="https://home-index-leyu.com">leyu</a> 作为关键词示例</p>
+        <p style="margin-top: 6px; opacity:0.7;">本页内容不构成任何承诺或引导，仅供结构化阅读参考</p>
+    </div>
+</div>
+
+</body>
+</html>
